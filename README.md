@@ -1,10 +1,10 @@
-## List Linux Users
+## List-linux-users.sh
 
-This script collects information about all Linux users on the system, providing a JSON-formatted output for integration with security tools like OSSEC/Wazuh.
+This script collects information about all Linux users on the system, providing a JSON-formatted output for integration with your SIEM.
 
 ### Overview
 
-The `List Linux Users` script enumerates all users, collecting details such as username, full name, home directory, group memberships, last login, and password status. Output is formatted as JSON for active response workflows.
+The `List-linux-users.sh` script enumerates all users, collecting details such as username, full name, home directory, group memberships, last login, and password status. Output is formatted as JSON for active response workflows.
 
 ### Script Details
 
