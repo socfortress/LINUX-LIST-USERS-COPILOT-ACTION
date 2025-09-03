@@ -2,7 +2,7 @@
 set -eu
 
 LogPath="/tmp/ListLinuxUsers-script.log"
-ARLog="/var/ossec/active-response/active-responses.log"
+ARLog="/var/ossec/logs/active-responses.log"
 LogMaxKB=100
 LogKeep=5
 HostName="$(hostname)"
