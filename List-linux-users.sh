@@ -82,8 +82,6 @@ WriteLog "=== SCRIPT START : $ScriptName (host=$HostName) ==="
 
 tmpfile="$(mktemp)"
 ts_iso="$(date --iso-8601=seconds 2>/dev/null || date '+%Y-%m-%dT%H:%M:%S%z')"
-
-# One NDJSON line per user (root + >= MIN_UID)
 getent passwd | while IFS=: read -r username x uid gid gecos home shell; do
   [ -n "${username:-}" ] || continue
   case "$username" in daemon|bin|sys|sync|games|man|lp|mail|news) continue ;; esac
@@ -101,7 +99,6 @@ getent passwd | while IFS=: read -r username x uid gid gecos home shell; do
     "$groups_json" "$lastlogon" "$pw_required" "$pw_expired" >> "$tmpfile"
 done
 
-# Do NOT pre-clear ARLog. Overwrite with atomic move; fallback to .new if blocked.
 AR_DIR="$(dirname "$ARLog")"
 [ -d "$AR_DIR" ] || WriteLog "Directory missing: $AR_DIR (will attempt write anyway)" WARN
 
@@ -121,7 +118,6 @@ else
   fi
 fi
 
-# Verify where data is
 for p in "$ARLog" "$ARLog.new"; do
   if [ -f "$p" ]; then
     sz=$(wc -c < "$p" 2>/dev/null || echo 0)
